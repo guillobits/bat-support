@@ -12,7 +12,8 @@ comes with a LSP for Vim users.
 
 ## Start the application
 
-Run `npx nx serve troubleshooting-app` to start the development server. Happy coding!
+Run `npx nx serve front` to start the development server. Happy coding!
+Run `npx nx serve back` to start the development server. Happy coding!
 
 ## Build for production
 
