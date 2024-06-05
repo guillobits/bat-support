@@ -2,7 +2,10 @@
   "name": "@troubleshooting-app/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "build:front:prod": "nx build front --prod",
+    "build:back:prod": "nx build back --prod"
+  },
   "private": true,
   "dependencies": {
     "@nestjs/common": "^10.0.2",
