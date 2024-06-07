@@ -4,7 +4,9 @@
   "license": "MIT",
   "scripts": {
     "build:front:prod": "npx nx build front --prod",
-    "build:back:prod": "npx nx build back --prod"
+    "build:back:prod": "npx nx build back --prod",
+    "back:dev:docker": "npx nx serve back --host=0.0.0.0 --port=6000",
+    "front:dev:docker": "npx nx serve front --host=0.0.0.0 --port=8080"
   },
   "private": true,
   "dependencies": {
