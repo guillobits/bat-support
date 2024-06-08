@@ -6,6 +6,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
 }
 
 datasource db {
@@ -30,6 +31,23 @@ model Lead {
 enum PaymentMethod {
   ONLINE
   ONSITE
+}
+
+model Answer {
+  id              Int       @id @default(autoincrement())
+  answer          String    @db.VarChar(256)
+
+  questionId     Int
+  question       Question @relation(fields: [questionId], references: [id])
+  nextQuestionId Int?
+  nextQuestion   Question? @relation("NextQuestion", fields: [nextQuestionId], references: [id])
+}
+
+model Question {
+  id        Int     @id @default(autoincrement())
+  question  String  @db.VarChar(256)
+  answers   Answer[]
+  nextAnswers Answer[] @relation("NextQuestion")
 }
 
 model SupportTicketAnswer {
