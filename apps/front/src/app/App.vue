@@ -2,6 +2,10 @@
 import { useSnackbar } from '../composables/useSnackbar';
 
 const { message, showSnackbar } = useSnackbar()
+
+const onContactClick = () => {
+  window.open('https://cal.com/guillobits');
+}
 </script>
 
 <template>
@@ -13,7 +17,7 @@ const { message, showSnackbar } = useSnackbar()
         </div>
         <div class="flex-grow-1"></div>
         <button
-          class="d-flex bg-primary text-primary-foreground h-100 align-center px-5 font-weight-bold text-h6">Contact</button>
+          class="d-flex bg-primary text-primary-foreground h-100 align-center px-5 font-weight-bold text-h6" @click="onContactClick">Contact</button>
       </v-app-bar>
 
       <v-main class="block">
