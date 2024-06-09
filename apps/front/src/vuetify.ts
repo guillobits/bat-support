@@ -9,12 +9,14 @@ const myCustomTheme = {
     'primary-foreground': '#FFFFFF',
     error: '#B71C1C',
     background: '#F2F2F2',
+    'background-foreground': '#000000',
     topbar: '#FFFFFF',
     footer: '#000000',
     'background-bis': '#443D3C',
     'background-bis-foreground': '#FFFFFF',
-    'background-foreground': '#000000',
-    'info': '#DEFAE9'
+    'info': '#DEFAE9',
+    'primary-light': '#FFF0F1',
+    'black': '#000000',
   }
 }
 
