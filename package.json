@@ -1,5 +1,5 @@
 {
-  "name": "@troubleshooting-app/source",
+  "name": "troubleshooting-app",
   "version": "0.0.0",
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
@@ -8,8 +8,7 @@
   "scripts": {
     "build:front:prod": "npx nx build front --prod",
     "build:back:prod": "npx nx build back --prod",
-    "back:dev:docker": "npx nx serve back --host=0.0.0.0 --port=6000",
-    "front:dev:docker": "npx nx serve front --host=0.0.0.0 --port=8080"
+    "apps:dev:docker": "npx nx run-many --parallel --target=serve --projects=back"
   },
   "private": true,
   "dependencies": {
@@ -19,11 +18,14 @@
     "@nestjs/platform-express": "^10.0.2",
     "@prisma/client": "^5.15.0",
     "ajv": "^8.16.0",
-    "axios": "^1.6.0",
+    "axios": "^1.7.2",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.0",
     "tslib": "^2.3.0",
-    "vue": "^3.3.4"
+    "vite-plugin-vuetify": "^2.0.3",
+    "vue": "^3.3.4",
+    "vue-router": "^4.3.2",
+    "vuetify": "^3.6.8"
   },
   "devDependencies": {
     "@nestjs/schematics": "^10.0.1",
