@@ -1,4 +1,4 @@
-import { Prisma, SupportTicket } from "@prisma/client";
+import { Prisma } from "@prisma/client";
 import axios from "axios";
 import { CreateSupportTicketDto } from "shared-types";
 
@@ -20,7 +20,10 @@ export const getQuestion = async (id = 1) : Promise<QuestionWithAnswers> => {
     })
     return data
   } catch (error) {
-    if (error.response.status === 404) {
+    if (error.code === 'ERR_NETWORK') {
+      throw Error(`Impossible de joindre le serveur`)
+    }
+    else if (!error.response || error.response.status === 404) {
       throw Error(`La question ${id} n'existe pas`)
     }
   }
@@ -35,8 +38,10 @@ export const createSupportTicket = async (form: CreateSupportTicketDto) => {
     })
     return data
   } catch (error) {
-    if (error.response.status !== 201) {
-      console.error(error);
+    if (error.code === 'ERR_NETWORK') {
+      throw Error(`Impossible de joindre le serveur`)
+    }
+    else if (!error.response || error.response.status !== 201) {
       throw Error(`La demande d'assistance n'a pas pu être enregistrée`);
     }
     throw Error(`Une erreur inconnue s'est produite`);
