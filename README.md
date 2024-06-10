@@ -1,4 +1,5 @@
 # Bat-Support - SupportTicket Questions
+by Guillaume CAUCHOIS
 
 ## Start the application
 
