@@ -15,12 +15,12 @@ const CATEGORY_REDIRECTOR = {
   locksmith: 1,
   glazing: 1,
   homeAppliance: 1,
-}
+};
 
 const onCategoryClick = (category: string) => {
-  const questionId = CATEGORY_REDIRECTOR[category]
-  router.push(`/question/${questionId}`);
-}
+  const questionId = CATEGORY_REDIRECTOR[category];
+  router.push(`/questions/${questionId}`);
+};
 
 onMounted(() => {
   setAppBackgroundColor('background-bis');
@@ -40,12 +40,15 @@ onUnmounted(() => {
     />
     <div class="d-flex justify-center">
       <div class="w-50">
-        <v-container>
           <v-row class="mt-10">
-            <v-col :cols="4">
-              <MainCategory title="Plomberie" @click="onCategoryClick('plumbing')">
+            <v-col :cols="12" :lg="4">
+              <MainCategory
+                title="Plomberie"
+                @click="onCategoryClick('plumbing')"
+              >
                 <template v-slot:icon>
                   <svg
+                    width="100%"
                     viewBox="0 0 82 82"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -60,10 +63,14 @@ onUnmounted(() => {
                 </template>
               </MainCategory>
             </v-col>
-            <v-col :cols="4">
-              <MainCategory title="Electricité" @click="onCategoryClick('electricity')">
+            <v-col :cols="12" :lg="4">
+              <MainCategory
+                title="Electricité"
+                @click="onCategoryClick('electricity')"
+              >
                 <template v-slot:icon>
                   <svg
+                    width="100%"
                     viewBox="0 0 68 68"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -78,10 +85,14 @@ onUnmounted(() => {
                 </template>
               </MainCategory>
             </v-col>
-            <v-col :cols="4">
-              <MainCategory title="Chauffage" @click="onCategoryClick('heating')">
+            <v-col :cols="12" :lg="4">
+              <MainCategory
+                title="Chauffage"
+                @click="onCategoryClick('heating')"
+              >
                 <template v-slot:icon>
                   <svg
+                    width="100%"
                     viewBox="0 0 72 78"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -138,10 +149,14 @@ onUnmounted(() => {
                 </template>
               </MainCategory>
             </v-col>
-            <v-col :cols="4">
-              <MainCategory title="Serrurerie" @click="onCategoryClick('locksmith')">
+            <v-col :cols="12" :lg="4">
+              <MainCategory
+                title="Serrurerie"
+                @click="onCategoryClick('locksmith')"
+              >
                 <template v-slot:icon>
                   <svg
+                    width="100%"
                     viewBox="0 0 88 89"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -180,10 +195,14 @@ onUnmounted(() => {
                 </template>
               </MainCategory>
             </v-col>
-            <v-col :cols="4">
-              <MainCategory title="Vitrerie" @click="onCategoryClick('glazing')">
+            <v-col :cols="12" :lg="4">
+              <MainCategory
+                title="Vitrerie"
+                @click="onCategoryClick('glazing')"
+              >
                 <template v-slot:icon>
                   <svg
+                    width="100%"
                     viewBox="0 0 92 64"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -196,10 +215,14 @@ onUnmounted(() => {
                 </template>
               </MainCategory>
             </v-col>
-            <v-col :cols="4">
-              <MainCategory title="Electroménager" @click="onCategoryClick('homeAppliance')">
+            <v-col :cols="12" :lg="4">
+              <MainCategory
+                title="Electroménager"
+                @click="onCategoryClick('homeAppliance')"
+              >
                 <template v-slot:icon>
                   <svg
+                    width="100%"
                     viewBox="0 0 66 76"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -213,7 +236,6 @@ onUnmounted(() => {
               </MainCategory>
             </v-col>
           </v-row>
-        </v-container>
       </div>
     </div>
   </div>

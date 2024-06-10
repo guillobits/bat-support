@@ -56,13 +56,16 @@ model SupportTicketAnswer {
 
   questionId Int
   answerId   Int
+  supportTicket   SupportTicket @relation(fields: [supportTicketId], references: [id])
+  supportTicketId Int
 }
 
 model SupportTicket {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
+  id            Int                   @id @default(autoincrement())
+  createdAt     DateTime              @default(now())
 
-  author        Lead          @relation(fields: [authorId], references: [id])
+  author        Lead                  @relation(fields: [authorId], references: [id])
   authorId      Int
   paymentMethod PaymentMethod
+  answers       SupportTicketAnswer[]
 }

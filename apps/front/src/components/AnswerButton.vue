@@ -11,3 +11,17 @@ const emit = defineEmits(['click']);
     {{ props.answer }}
   </v-btn>
 </template>
+
+<style lang="scss">
+.btn-wrap-text {
+  height: auto !important;
+  max-width: 100%;
+  white-space: normal;
+  &.v-btn:not(.v-btn--round).v-size--default {
+    padding: 10px 16px;
+  }
+  .v-btn__content {
+    flex: 1 0 fit-content;
+  }
+}
+</style>

@@ -1,5 +1,6 @@
 @import './variables.scss';
 @import 'vuetify/styles';
+@import '@mdi/font/css/materialdesignicons.css';
 
 html {
   -webkit-text-size-adjust: 100%;
@@ -9,6 +10,7 @@ html {
   line-height: 1.5;
   tab-size: 4;
   scroll-behavior: smooth;
+  overflow-y: inherit;
 }
 body {
   font-family: inherit;

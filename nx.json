@@ -59,5 +59,12 @@
       "exclude": ["apps/back-e2e/**/*"]
     }
   ],
-  "nxCloudAccessToken": "MGY2MjExODctNmQ0OS00M2MwLTg0ZDctMzI4ZmNhZTg5M2I4fHJlYWQtd3JpdGU="
+  "nxCloudAccessToken": "MGY2MjExODctNmQ0OS00M2MwLTg0ZDctMzI4ZmNhZTg5M2I4fHJlYWQtd3JpdGU=",
+  "targetDefaults": {
+    "@nx/js:tsc": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
+    }
+  }
 }

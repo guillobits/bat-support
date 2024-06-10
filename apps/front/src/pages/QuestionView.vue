@@ -7,12 +7,12 @@ import { useRoute, useRouter } from 'vue-router';
 import { watch } from 'vue';
 import { useSnackbar } from '../composables/useSnackbar';
 import { Answer } from '@prisma/client';
+import { useSupportTicketStore } from '../stores/supportTicket.store';
 
 // Hooks
 const route = useRoute()
 const router = useRouter()
 const snackbar = useSnackbar()
-
 
 // Watchers
 watch(() => route.params.id, (newId) => {
@@ -23,13 +23,13 @@ watch(() => route.params.id, (newId) => {
 
 // Refs
 const question = ref<QuestionWithAnswers>(null)
-
-// Computed props
-const gotPreviousQuestion = computed(() => {
-  return router
-})
+const supportTicketStore = useSupportTicketStore()
 
 // Methods
+/**
+ * Retrieve the question data about the questionId given
+ * @param id
+ */
 const updateQuestion = (id: number) => {
   getQuestion(id).then((q) => {
     question.value = q
@@ -38,9 +38,19 @@ const updateQuestion = (id: number) => {
   })
 }
 
+/**
+ * Handle click on an answer button
+ * @param answer The answer selected by the user
+ */
 const onAnswerClick = (answer: Answer) => {
+  supportTicketStore.addSupportTicketAnswer(question.value.id, answer.id)
   if (answer.nextQuestionId) {
-    router.push(`/question/${answer.nextQuestionId}`)
+    // Redirect to next question page if exists
+    router.push(`/questions/${answer.nextQuestionId}`)
+  }
+  else {
+    // Redirect to support-ticket if flow is end
+    router.push({ name: 'support-ticket' })
   }
 }
 
@@ -57,18 +67,18 @@ onMounted(() => {
       <QuestionTitle :title="question.question" />
       <v-card class="pa-5" :elevation="5" rounded="lg">
         <v-row>
-          <v-col cols="12" sm="6" v-for="answer in question.answers" :key="answer.id">
+          <v-col cols="12" lg="6" v-for="answer in question.answers" :key="answer.id">
             <AnswerButton :answer="answer.answer" @click="onAnswerClick(answer)" />
           </v-col>
         </v-row>
         <v-btn class="mt-5 text-none font-weight-medium" variant="outlined" color="primary" rounded size="large"
-          v-if="gotPreviousQuestion" @click="router.back()">
+          @click="router.back()">
           Etape précédente
         </v-btn>
       </v-card>
       <v-card class="pa-5" color="info" :elevation="0" rounded="lg">
         <v-container>
-          <v-col :offset="2" :column="8" class="d-flex flex-column ga-5">
+          <v-col :offsetLg="2" :cols="12" :lg="8" class="d-flex flex-column ga-5">
             <p>
               <svg width="11" height="8" viewBox="0 0 11 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
