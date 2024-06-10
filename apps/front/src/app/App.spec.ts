@@ -7,6 +7,6 @@ describe('App', () => {
   it('renders properly', async () => {
     const wrapper = mount(App, {});
 
-    expect(wrapper.text()).toContain('Welcome troubleshooting-app 👋');
+    expect(wrapper.text()).toContain('BatSupport');
   });
 });

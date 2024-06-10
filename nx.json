@@ -35,15 +35,6 @@
       }
     },
     {
-      "plugin": "@nx/cypress/plugin",
-      "options": {
-        "targetName": "e2e",
-        "openTargetName": "open-cypress",
-        "componentTestingTargetName": "component-test",
-        "ciTargetName": "e2e-ci"
-      }
-    },
-    {
       "plugin": "@nx/webpack/plugin",
       "options": {
         "buildTargetName": "build",
@@ -56,7 +47,6 @@
       "options": {
         "targetName": "test"
       },
-      "exclude": ["apps/back-e2e/**/*"]
     }
   ],
   "nxCloudAccessToken": "MGY2MjExODctNmQ0OS00M2MwLTg0ZDctMzI4ZmNhZTg5M2I4fHJlYWQtd3JpdGU=",
