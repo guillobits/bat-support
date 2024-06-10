@@ -11,6 +11,11 @@ export type QuestionWithAnswers = Prisma.QuestionGetPayload<{
   include: { answers: true }
 }>
 
+/**
+ * Api - Fetch a question
+ * @param id The question id to fetch
+ * @returns Promise of question with answers
+ */
 export const getQuestion = async (id = 1) : Promise<QuestionWithAnswers> => {
   try {
     const { data } = await axiosClient.get(`question/${id}`, {
@@ -29,6 +34,11 @@ export const getQuestion = async (id = 1) : Promise<QuestionWithAnswers> => {
   }
 }
 
+/**
+ * Api - Create a supportTicket
+ * @param form
+ * @returns
+ */
 export const createSupportTicket = async (form: CreateSupportTicketDto) => {
   try {
     const { data } = await axiosClient.post(`support-ticket/`, form, {
