@@ -1,47 +1,41 @@
 services:
+  # Database - Postgres
   db:
-      image: postgres:14-alpine
-      ports:
-        - 5432:5432
-      volumes:
-       - postgres_data:/var/lib/postgresql/data
-      environment:
-        - POSTGRES_PASSWORD=postgres
-        - POSTGRES_USER=postgres
-        - POSTGRES_DB=mydb
-
-  # Back-end Nest App
-  frontend:
-    image: node:lts-alpine
-    working_dir: /app
-    volumes:
-      - .:/app
-      - /app/node_modules
-      - /app/.nx/cache # Montez le cache pour qu'il soit partagé et mis à jour correctement
-    command: sh -c "npm install && npm run front:dev:docker"
+    container_name: batsupport-db
+    image: postgres:16.3-alpine
     ports:
-      - '8080:8080'
-    environment:
-      - NODE_ENV=development
-    depends_on:
-      - backend
-
-  # Back-end Nest App
-  backend:
-    image: node:lts-alpine
-    working_dir: /app
+      - 5432:5432
     volumes:
-      - .:/app
-      - ./node_modules:/app/node_modules
-      - /app/.nx/cache # Montez le cache pour qu'il soit partagé et mis à jour correctement
-    command: sh -c "npm install && npm run back:dev:docker"
-    ports:
-      - '3000:3000'
+      - postgres_data:/var/lib/postgresql/data
     environment:
-      - NODE_ENV=development
-      - DATABASE_URL=postgres://postgres:postgres@db:5432/mydb
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=mydb
+
+  # Vue App
+  app:
+    container_name: batsupport-app
+    extends:
+      file: docker-compose.base.yml
+      service: nx-app-base
+    command: npm run app:dev:docker
+    ports:
+      - 4200:4200
+
+  # Nest App
+  api:
+    container_name: batsupport-api
+    extends:
+      file: docker-compose.base.yml
+      service: nx-app-base
+    volumes:
+      - /app/.nx/cache
+    command: "npm run api:dev:docker"
+    ports:
+      - 3000:3000
     depends_on:
       - db
 
 volumes:
-  postgres_data:
+  mono-node-modules: null
+  postgres_data: null

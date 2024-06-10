@@ -1,15 +1,19 @@
 {
-  "name": "troubleshooting-app",
+  "name": "batsupport",
   "version": "0.0.0",
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   },
   "license": "MIT",
   "scripts": {
+    "app:dev:docker": "nx serve front --host=0.0.0.0 --port=4200",
+    "api:dev:docker": "nx serve back --host=0.0.0.0 --port=4311 --verbose",
+    "start": "nx serve",
+    "build": "nx build",
+    "db:migrate": "npx prisma db push",
+    "db:seed": "npx prisma db seed",
     "build:front:prod": "npx nx build front --prod",
-    "build:back:prod": "npx nx build back --prod",
-    "back:dev:docker": "npx nx serve back --host=0.0.0.0 --port=6000",
-    "front:dev:docker": "npx nx serve front --host=0.0.0.0 --port=8080"
+    "build:back:prod": "npx nx build back --prod"
   },
   "private": true,
   "dependencies": {
@@ -32,6 +36,7 @@
     "vuetify": "^3.6.8"
   },
   "devDependencies": {
+    "@faker-js/faker": "^8.4.1",
     "@mdi/font": "^7.4.47",
     "@nestjs/schematics": "^10.0.1",
     "@nestjs/testing": "^10.0.2",
